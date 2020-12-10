@@ -10,8 +10,9 @@ body{
 .container {
     text-align:center;
     padding: 10px;
-    background-color: #383CC1;
-    border: 1px black solid;
+    background-color: #8388EA;
+    
+    border-radius: 5px;
 
 }
 .calcTop {
@@ -20,7 +21,7 @@ body{
    padding: 10px;
     background-color: #DFDFDF;
     border-radius: 10px;
-    border: 1px black solid;
+    
 
 }
 #screenTop{
@@ -52,4 +53,11 @@ button{
     margin: 5px;
     border: 0px #00004d solid;
     background-color:  #00004d;
+}
+.numButton{
+    background-color: #191E7C;
+}
+button:hover{
+    cursor: pointer;
+    background-color: #00001a;
 }

@@ -29,7 +29,7 @@ function addNumber(num){
 
 
 function checkOperation(operator){
-    if (['+','x','/','-'].includes(topNums[topNums.length - 1]) && screenBottom.innerHTML != ''){
+    if (['+','-','*','÷'].includes(topNums[topNums.length - 1]) && screenBottom.innerHTML != ''){
         return operate()
         
         
@@ -94,7 +94,7 @@ function operate(){
   // Check to see if a new operator has been selected
     var operator = topNums[topNums.length - 1]
     if (operator == '=' && screenBottom.innerHTML !=''){
-     // pass
+     //pass
     }else{
 
     var num1 = topNums.substring(0,topNums.length - 1)
@@ -111,22 +111,22 @@ function operate(){
           var num3 = num1 - num2
           
           break;
-        case 'x':
+        case '*':
           var num3 = num1 * num2
           
             
         break;
-          case '/':
+          case '÷':
             var num3 = num1 / num2
            
           
           break;
         default:
-            //pass
+            console.log(7)
         
       }
       // Properly round off if num3 is a long decimal
-      num3 = Math.round((num3 + Number.EPSILON) * 100) / 100
+    num3 = Math.round((num3 + Number.EPSILON) * 100) / 100
     screenBottom.innerHTML = num3
     }
  
