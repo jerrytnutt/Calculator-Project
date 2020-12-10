@@ -4,6 +4,7 @@ const screenTop = document.getElementById("screenTop");
 
 const equalButton = document.getElementById("equal");
 const decimalButton = document.getElementById("decimal");
+const backspaceButton = document.getElementById("backspace");
 
 
 var topNums = ''
@@ -13,7 +14,7 @@ var bottomNums = ''
 
 function addNumber(num){
     screenBottom.innerHTML += num
-    
+    bottomNums = screenBottom.innerHTML
     
 }
 
@@ -27,15 +28,15 @@ function addNumber(num){
 
 
 
-function checkOperation(operand){
+function checkOperation(operator){
     if (['+','x','/','-'].includes(topNums[topNums.length - 1]) && screenBottom.innerHTML != ''){
-        return equateNums()
+        return operate()
         
         
     } else if (screenBottom.innerHTML != ''){
         bottomNums = screenBottom.innerHTML
         screenBottom.innerHTML = ''
-        screenTop.innerHTML = bottomNums + operand
+        screenTop.innerHTML = bottomNums + operator
         topNums = screenTop.innerHTML
     }
 
@@ -70,27 +71,39 @@ function checkOperation(operand){
          
 decimalButton.addEventListener('click',addDecimal)
 function addDecimal(){
-  bottomNums = screenBottom.innerHTML
+  if (bottomNums.includes(".")){
+    //pass
+
+  }else{
   bottomNums = bottomNums + '.'
   screenBottom.innerHTML = bottomNums
-  //console.log(bottomNums + 5)
+  }
 }
 
-equalButton.addEventListener('click',equateNums)
-function equateNums(){
-    var operand = topNums[topNums.length - 1]
-    if (operand == '=' && screenBottom.innerHTML !=''){
-      console.log(77)
+
+backspaceButton.addEventListener('click',removeNumber)
+function removeNumber(){
+  bottomNums = bottomNums.slice(0, -1) 
+  screenBottom.innerHTML = bottomNums
+}
+
+
+equalButton.addEventListener('click',operate)
+
+function operate(){
+  // Check to see if a new operator has been selected
+    var operator = topNums[topNums.length - 1]
+    if (operator == '=' && screenBottom.innerHTML !=''){
+     // pass
     }else{
 
-    
     var num1 = topNums.substring(0,topNums.length - 1)
     var num2 = screenBottom.innerHTML
     screenTop.innerHTML += (num2 + '=')
     num1 =  parseFloat(num1)
     num2 =  parseFloat(num2)
     topNums = screenTop.innerHTML
-    switch(operand) {
+    switch(operator) {
         case '+':
             var num3 = num1 + num2
           break;
@@ -109,9 +122,11 @@ function equateNums(){
           
           break;
         default:
-            console.log(7)
+            //pass
         
       }
+      // Properly round off if num3 is a long decimal
+      num3 = Math.round((num3 + Number.EPSILON) * 100) / 100
     screenBottom.innerHTML = num3
     }
  

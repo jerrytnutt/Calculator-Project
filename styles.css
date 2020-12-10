@@ -8,16 +8,13 @@ body{
 }
 
 .container {
-
     text-align:center;
-    
     padding: 10px;
     background-color: #383CC1;
     border: 1px black solid;
 
 }
 .calcTop {
-    
     margin: auto;
     width: 400px;
    padding: 10px;
@@ -32,17 +29,14 @@ body{
     font-size: 25px;
     padding-bottom: 25px;
     
-    
 }
 #screenBottom{
-    
     border-radius: 10px;
     height: 20px;
     text-align:right;
     font-size: 45px;
     padding-bottom: 25px;
     color: black;
-    
 }
 .grid{
     display: grid;
