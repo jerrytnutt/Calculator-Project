@@ -1,4 +1,3 @@
-
 const screenBottom = document.getElementById("screenBottom");
 const screenTop = document.getElementById("screenTop");
 
@@ -13,12 +12,9 @@ var topNums = ''
 // Numbers that are currently being selected
 var bottomNums = ''
 
-
-
 function addNumber(num){
     screenBottom.innerHTML += num
     bottomNums = screenBottom.innerHTML
-    
 }
 
 [...document.querySelectorAll('.numButton')].forEach(function(item) {
@@ -27,7 +23,6 @@ function addNumber(num){
      });
       });
 
-
 function checkOperation(operator){
     // Check if an operator has already been selected
     if (['+','-','*','÷'].includes(topNums[topNums.length - 1]) && screenBottom.innerHTML != ''){
@@ -35,8 +30,9 @@ function checkOperation(operator){
   } else if (screenBottom.innerHTML != ''){
         bottomNums = screenBottom.innerHTML
         screenBottom.innerHTML = ''
-        screenTop.innerHTML = bottomNums + operator
+        screenTop.innerHTML = bottomNums +' '+ operator
         topNums = screenTop.innerHTML
+        bottomNums = ''
     }
 
 }
@@ -57,7 +53,6 @@ function clearData(){
   screenTop.innerHTML = ''
 }
   
-         
 decimalButton.addEventListener('click',addDecimal)
 
 function addDecimal(){
@@ -67,7 +62,6 @@ function addDecimal(){
   }
 }
 
-
 backspaceButton.addEventListener('click',removeNumber)
 
 function removeNumber(){
@@ -75,9 +69,9 @@ function removeNumber(){
   screenBottom.innerHTML = bottomNums
 }
 
-signButton.addEventListener('click',reverseSign)
+signButton.addEventListener('click',changeSign)
 
-function reverseSign(){
+function changeSign(){
   if (bottomNums[0] == '-'){
   bottomNums = bottomNums.substring(1)
   screenBottom.innerHTML = bottomNums
@@ -88,18 +82,16 @@ function reverseSign(){
 
 }
 
-
 equalButton.addEventListener('click',operate)
 
 function operate(){
   // Check to see if a new operator has been selected
     var operator = topNums[topNums.length - 1]
-    
-    if (['+','-','*','÷'].includes(operator)){
+    if (['+','-','*','÷'].includes(operator) && bottomNums != ''){
 
       var num1 = topNums.substring(0,topNums.length - 1)
       var num2 = screenBottom.innerHTML
-      screenTop.innerHTML += (num2 + '=')
+      screenTop.innerHTML += ` ${num2} =`
       num1 =  parseFloat(num1)
       num2 =  parseFloat(num2)
       topNums = screenTop.innerHTML
@@ -113,7 +105,6 @@ function operate(){
           case '*':
             var num3 = num1 * num2
             break;
-
           case '÷':
             // Cannot divide by zero
               if (num2 == 0){
@@ -128,21 +119,15 @@ function operate(){
               break;
           default:
               // pass
-          
         }
       // Properly round off if num3 is a long decimal
       num3 = Math.round((num3 + Number.EPSILON) * 100) / 100
       screenBottom.innerHTML = num3
       }
- 
-      
-}
+ }
 
 // keyboard shortcuts
-
 window.onkeydown = function(e){
-  
-  console.log(e.key)
   if (e.key >= 0 && e.key <=9){
     var number = e.key.toString()
     addNumber(number)
@@ -156,11 +141,8 @@ window.onkeydown = function(e){
   }
   else if (e.key == 'Backspace'){
     return removeNumber()
-  }else if (e.key == 'c'){
-    screenBottom.innerHTML = ''
-      bottomNums = ''
-      topNums = ''
-      screenTop.innerHTML = ''
+  }else if (e.key == 'a'){
+     return clearData()
   }
   
 }
