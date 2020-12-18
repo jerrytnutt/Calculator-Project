@@ -7,7 +7,7 @@ const clearButton = document.getElementById("clear");
 const backspaceButton = document.getElementById("backspace");
 const signButton = document.getElementById("sign");
 
-// Numbers that are already part of a solved equation
+// Numbers that are already part of a solved equation 
 var topNums = ''
 // Numbers that are currently being selected
 var bottomNums = ''
@@ -22,7 +22,8 @@ function addNumber(num){
     addNumber(item.innerHTML)
      });
       });
-
+  
+// Called if an operator button is selected (+,-,*,÷)
 function checkOperation(operator){
     // Check if an operator has already been selected
     if (['+','-','*','÷'].includes(topNums[topNums.length - 1]) && screenBottom.innerHTML != ''){
@@ -70,7 +71,7 @@ function removeNumber(){
 }
 
 signButton.addEventListener('click',changeSign)
-
+// Switch from positive to negative integer and vice versa
 function changeSign(){
   if (bottomNums[0] == '-'){
   bottomNums = bottomNums.substring(1)
@@ -126,7 +127,7 @@ function operate(){
       }
  }
 
-// keyboard shortcuts
+// Keyboard shortcuts
 window.onkeydown = function(e){
   if (e.key >= 0 && e.key <=9){
     var number = e.key.toString()
@@ -144,5 +145,4 @@ window.onkeydown = function(e){
   }else if (e.key == 'a'){
      return clearData()
   }
-  
 }
