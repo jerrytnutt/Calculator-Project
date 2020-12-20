@@ -1,6 +1,6 @@
 const screenBottom = document.getElementById("screenBottom");
 const screenTop = document.getElementById("screenTop");
-//hh
+
 const equalButton = document.getElementById("equal");
 const decimalButton = document.getElementById("decimal");
 const clearButton = document.getElementById("clear");
@@ -44,7 +44,6 @@ function checkOperation(operator){
         });
          });
   
- 
 clearButton.addEventListener('click',clearData)
 
 function clearData(){
@@ -80,7 +79,6 @@ function changeSign(){
     bottomNums = '-'+ bottomNums 
     screenBottom.innerHTML = bottomNums
   }
-
 }
 
 equalButton.addEventListener('click',operate)
@@ -92,19 +90,20 @@ function operate(){
 
       var num1 = topNums.substring(0,topNums.length - 1)
       var num2 = screenBottom.innerHTML
+      var num3 = 0
       screenTop.innerHTML += ` ${num2} =`
       num1 =  parseFloat(num1)
       num2 =  parseFloat(num2)
       topNums = screenTop.innerHTML
       switch(operator) {
           case '+':
-            var num3 = num1 + num2
+            num3 = num1 + num2
             break;
           case '-':
-            var num3 = num1 - num2
+            num3 = num1 - num2
             break;
           case '*':
-            var num3 = num1 * num2
+            num3 = num1 * num2
             break;
           case '÷':
             // Cannot divide by zero
@@ -115,7 +114,7 @@ function operate(){
                 screenTop.innerHTML = ''
                 return alert('Sorry, but I will not allow that')
               }else{
-                var num3 = num1 / num2
+                 num3 = num1 / num2
               }
               break;
           default:
